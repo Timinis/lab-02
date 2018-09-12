@@ -1,6 +1,7 @@
 select {
-  display: inline;
-  margin: 75px;
-  top: 300px;
-  right: 400px;
+  position: absolute;
+  width: 800px;
+  padding: 5px;
+  left: 25px;
+  top: 100px;
 }
