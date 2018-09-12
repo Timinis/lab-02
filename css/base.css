@@ -3,7 +3,17 @@ body {
   font-size: 20px;
 }
 
+.hidden {
+  background-color: blue;
+}
+
+#photo-template {
+  background-color: blue;
+}
+
 section {
-  background-color: gray;
+  display: inline-block;
+  width: 300px;
+  background-color: whitesmoke;
   margin: 5px;
 }
