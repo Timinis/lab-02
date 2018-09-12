@@ -8,11 +8,13 @@ body {
 }
 
 #photo-template {
+  float: left; 
   background-color: blue;
 }
 
 section {
   display: inline-block;
+  position: inherit;
   width: 300px;
   background-color: whitesmoke;
   margin: 5px;

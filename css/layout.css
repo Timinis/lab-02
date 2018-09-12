@@ -1,14 +1,14 @@
 h1 {
   color: white;
-  margin: 20px;
   position: absolute;
-  float: auto;
+  float: left;
+  left: 25px;
   font-size: 40px;
 }
 
 h2 {
   text-align: center;
-  font-size: 25px;
+  font-size: 21px;
 }
 
 p {
@@ -20,10 +20,11 @@ p {
 }
 
 img {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 175px;
 }
 
 footer {
-  float: auto;
+  color: white;
+  float: left;
 }
