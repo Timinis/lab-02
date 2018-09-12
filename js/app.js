@@ -56,10 +56,15 @@ const dropDownRender = string => {
   $hornedDup.addClass(string);
 };
 
-$('button[name=clear]').on('click', function() {
-  $('.log-item:first')
+$('select').on('change', function () {
+  $('#photo-template')
     .siblings()
     .remove();
+  hornedArray.forEach(element => {
+    if (($('select').val()) === element.keyword) {
+      pageRender(element)
+    }
+  })
 });
 
 $(() => readJson());
