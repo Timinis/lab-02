@@ -14,16 +14,19 @@ const readJson = () => {
   $.get('../json/page-1.json', 'json')
     .then(data => {
       data.forEach(horned => {
-        hornedArray.push( new HornedAnimal(horned))
-      }
-      )
-
-    });
-    .then(hornedArray.forEach(obj => pageRender(obj)));
+        hornedArray.push(new HornedAnimal(horned))
+      })
+    })
+    .then(() => {
+      hornedArray.forEach(element => pageRender(element));
+    })
 };
 
-pageRender = (obj) => {
-  $('main').append('<section class="clone></section>');
+
+
+const pageRender = (obj) => {
+  console.log(obj);
+  $('main').append('<section class="clone"></section>');
   const $hornedClone = $('section[class="clone"]');
   const $hornHtml = $('#photo-template').html();
   $hornedClone.html($hornHtml);
@@ -33,8 +36,7 @@ pageRender = (obj) => {
   $hornedClone.find('p').text(obj.description);
   $hornedClone.removeClass('clone');
   $hornedClone.addClass(obj.title);
-}; 
 
+}
 
-
-readJson();
+$(() => readJson());
