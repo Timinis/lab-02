@@ -18,6 +18,14 @@ const readJson = () => {
         hornedArray.push(new HornedAnimal(horned));
       });
     })
+    .then(
+      $.get('../json/page-2.json', 'json')
+      .then(data => {
+        data.forEach(horned => {
+          hornedArray.push(new HornedAnimal(horned));
+        });
+      })
+    )
     .then(() => {
       hornedArray.forEach(element => $('#photo-gallery').append(pageRender(element)));
     })
@@ -26,29 +34,13 @@ const readJson = () => {
     })
     .then(() => {
       filterSet.forEach(element => dropDownRender(element));
-    });
-  $.get('../json/page-2.json', 'json')
-    .then(data => {
-      data.forEach(horned => {
-        hornedArray.push(new HornedAnimal(horned));
-      });
     })
-    .then(() => {
-      hornedArray.forEach(element => $('#photo-gallery').append(pageRender(element)));
-    })
-    .then(() => {
-      addSet(hornedArray);
-    })
-    .then(() => {
-      filterSet.forEach(element => dropDownRender(element));
-    });
+    .then(filterFunction);
 };
 
 const addSet = obj => {
   obj.forEach(element => filterSet.add(element.keyword));
 };
-
-console.log(filterSet);
 
 const pageRender = obj => {
   const $source = $('#horn-template').html();
@@ -66,15 +58,20 @@ const dropDownRender = string => {
   $hornedDup.addClass(string);
 };
 
-$('select').on('change', function () {
-  $('#photo-template')
-    .siblings()
-    .remove();
-  hornedArray.forEach(element => {
-    if (($('select').val()) === element.keyword) {
-      pageRender(element)
-    }
-  })
-});
+const filterFunction = () => {
+
+  $('select').on('change', function () {
+
+    $('#photo-gallery')
+      .children()
+      .remove();
+    console.log($('select').val());
+    hornedArray.forEach(element => {
+      if (($('select').val()) === element.keyword) {
+        $('#photo-gallery').append(pageRender(element))
+      }
+    })
+  });
+};
 
 $(() => readJson());
