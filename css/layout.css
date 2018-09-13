@@ -1,8 +1,7 @@
 h1 {
-  color: white;
-  position: absolute;
-  float: left;
-  left: 25px;
+  width: 750px;
+  color: black;
+  display: flex;
   font-size: 40px;
 }
 
@@ -12,16 +11,16 @@ h2 {
 }
 
 p {
+  align-content: center; 
   margin: 15px;
   text-align: center;
   overflow-wrap: normal;
-  position: relative;
   font-size: 20px;
 }
 
 img {
-  width: 250px;
-  height: 175px;
+  width: 100%;
+  align-content: center;
 }
 
 footer {

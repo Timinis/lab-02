@@ -13,9 +13,8 @@ body {
 }
 
 section {
-  display: inline-block;
-  position: inherit;
-  width: 300px;
+  margin: 100px;
+  display: flex;
+  flex-wrap: wrap;
   background-color: whitesmoke;
-  margin: 5px;
 }

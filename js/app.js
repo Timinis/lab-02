@@ -20,11 +20,11 @@ const readJson = () => {
     })
     .then(
       $.get('../json/page-2.json', 'json')
-      .then(data => {
-        data.forEach(horned => {
-          hornedArray.push(new HornedAnimal(horned));
-        });
-      })
+        .then(data => {
+          data.forEach(horned => {
+            hornedArray.push(new HornedAnimal(horned));
+          });
+        })
     )
     .then(() => {
       hornedArray.forEach(element => $('#photo-gallery').append(pageRender(element)));

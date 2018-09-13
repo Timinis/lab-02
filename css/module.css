@@ -1,7 +1,13 @@
 select {
   position: absolute;
-  width: 800px;
+  width: 500px;
   padding: 5px;
   left: 25px;
   top: 100px;
+}
+
+div {
+  display: inline-block;
+  width: 25%;
+  /* width: calc(100% * (1/4) - 10px - 1px); */
 }
