@@ -19,7 +19,22 @@ const readJson = () => {
       });
     })
     .then(() => {
-      hornedArray.forEach(element => pageRender(element));
+      hornedArray.forEach(element => $('#photo-gallery').append(pageRender(element)));
+    })
+    .then(() => {
+      addSet(hornedArray);
+    })
+    .then(() => {
+      filterSet.forEach(element => dropDownRender(element));
+    });
+  $.get('../json/page-2.json', 'json')
+    .then(data => {
+      data.forEach(horned => {
+        hornedArray.push(new HornedAnimal(horned));
+      });
+    })
+    .then(() => {
+      hornedArray.forEach(element => $('#photo-gallery').append(pageRender(element)));
     })
     .then(() => {
       addSet(hornedArray);
@@ -36,16 +51,11 @@ const addSet = obj => {
 console.log(filterSet);
 
 const pageRender = obj => {
-  $('main').append('<section class="clone"></section>');
-  const $hornedClone = $('section[class="clone"]');
-  const $hornHtml = $('#photo-template').html();
-  $hornedClone.html($hornHtml);
-
-  $hornedClone.find('h2').text(obj.title);
-  $hornedClone.find('img').attr('src', obj.image_url);
-  $hornedClone.find('p').text(obj.description);
-  $hornedClone.removeClass('clone');
-  $hornedClone.addClass(obj.title);
+  const $source = $('#horn-template').html();
+  // 2. Compile the source with Handlebars
+  const compiledSource = Handlebars.compile($source);
+  // 3. Return the HTML from the compile method
+  return compiledSource(obj);
 };
 
 const dropDownRender = string => {
