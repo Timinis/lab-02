@@ -5,6 +5,11 @@ h1 {
   font-size: 40px;
 }
 
+button {
+padding-top: 40px;
+
+}
+
 h2 {
   text-align: center;
   font-size: 21px;
