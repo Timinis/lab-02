@@ -8,8 +8,12 @@ function HornedAnimal(hornedObject) {
   this.image_url = hornedObject.image_url;
 }
 
-const hornedArray = [];
+let hornedArray = [];
 const filterSet = new Set();
+let nameSortCheck = false;
+let hornSortCheck = false;
+let tempSortArray = [];
+
 
 const readJson = () => {
   $.get('../json/page-1.json', 'json')
@@ -35,7 +39,10 @@ const readJson = () => {
     .then(() => {
       filterSet.forEach(element => dropDownRender(element));
     })
-    .then(filterFunction);
+    .then(buttonSwitch)
+    .then(filterFunction)
+    .then(buttonSwitch);
+
 };
 
 const addSet = obj => {
@@ -84,16 +91,65 @@ const dropDownRender = string => {
 const filterFunction = () => {
 
   $('select').on('change', function () {
-
+    tempSortArray = [];
     $('#photo-gallery')
       .children()
       .remove();
-    console.log($('select').val());
     hornedArray.forEach(element => {
       if (($('select').val()) === element.keyword) {
+        tempSortArray.push(element);
         $('#photo-gallery').append(pageRender(element))
       }
     })
+  });
+};
+
+const buttonSwitch = () => {
+
+  $('#nameSort').on('click', function () {
+    if (nameSortCheck === false && tempSortArray[0] === undefined) {
+      $('#photo-gallery')
+        .children()
+        .remove();
+      hornedArray = sortByTitle(hornedArray);
+
+      hornedArray.forEach(element =>
+        $('#photo-gallery').append(pageRender(element)));
+      nameSortCheck = true;
+      hornSortCheck = false;
+    } else if (tempSortArray[0] !== undefined) {
+      $('#photo-gallery')
+        .children()
+        .remove();
+      tempSortArray = sortByTitle(tempSortArray);
+
+      tempSortArray.forEach(element =>
+        $('#photo-gallery').append(pageRender(element)));
+      nameSortCheck = true;
+      hornSortCheck = false;
+    }
+  });
+
+  $('#hornSort').on('click', function () {
+    if (hornSortCheck === false) {
+      $('#photo-gallery')
+        .children()
+        .remove();
+      hornedArray = sortByNumber(hornedArray);
+      hornedArray.forEach(element => $('#photo-gallery').append(pageRender(element)));
+      nameSortCheck = false;
+      hornSortCheck = true;
+    } else if (tempSortArray[0] !== undefined) {
+      $('#photo-gallery')
+        .children()
+        .remove();
+      tempSortArray = sortByNumber(tempSortArray);
+
+      tempSortArray.forEach(element =>
+        $('#photo-gallery').append(pageRender(element)));
+      nameSortCheck = false;
+      hornSortCheck = true;
+    }
   });
 };
 
