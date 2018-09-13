@@ -42,6 +42,29 @@ const addSet = obj => {
   obj.forEach(element => filterSet.add(element.keyword));
 };
 
+const sortByTitle = (array) => {
+  array.sort(function (a, b) {
+    var nameA = a.title.toLowerCase();
+    var nameB = b.title.toLowerCase();
+    if (nameA < nameB) {
+      return -1
+    }
+    if (nameA > nameB) {
+      return 1
+    } else {
+      return 0
+    }
+  })
+  return array;
+}
+
+const sortByNumber = (array) => {
+  array.sort((a, b) => {
+    return a.horns - b.horns
+  })
+  return array;
+}
+
 const pageRender = obj => {
   const $source = $('#horn-template').html();
   // 2. Compile the source with Handlebars
