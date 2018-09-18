@@ -9,7 +9,6 @@ body {
 
 #photo-template {
   float: left;
-  background-color: lightblue;
 }
 
 section {
@@ -17,4 +16,5 @@ section {
   display: flex;
   flex-wrap: wrap;
   background-color: whitesmoke;
+  height: 500px;
 }

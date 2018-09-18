@@ -1,6 +1,6 @@
 select {
-  position: absolute;
-  width: 500px;
+  float: left;
+  width: 800px;
   padding: 5px;
   left: 25px;
   top: 100px;
